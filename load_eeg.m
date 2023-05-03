@@ -1,7 +1,14 @@
 %OPEN BINARY OR NON-BINARY BVA FILES + EEGLAB BVA EXPORTS
 % input: 'filename.dat'; output raw,srate
 
-function [raw,srate] = load_eeg(filename)
+function [raw,srate] = load_eeg(varargin)
+
+if nargin == 1
+    filename = varargin{1};
+else
+    [file,path] = uigetfile('/DATA/multimodal/EEG/*.dat');
+    filename = [path file];
+end
 
 filename_eeg = string(filename);
 filename_eeg = strsplit(filename_eeg,'.');filename_eeg = filename_eeg{1,1};
